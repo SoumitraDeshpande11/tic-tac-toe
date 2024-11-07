@@ -3,13 +3,13 @@ import sys
 
 pygame.init()
 
-# Screen settings
+
 SCREEN_WIDTH, SCREEN_HEIGHT = 600, 600
 LINE_WIDTH = 15
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Tic-Tac-Toe")
 
-# Colors
+
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 BLUE = (70, 130, 180)
@@ -17,17 +17,17 @@ RED = (220, 20, 60)
 BACKGROUND_COLOR = (30, 30, 30)
 GRID_COLOR = (50, 50, 50)
 
-# Fonts
+
 FONT = pygame.font.Font(None, 100)
 WIN_FONT = pygame.font.Font(None, 75)
 
-# Initialize board
+
 board = [['' for _ in range(3)] for _ in range(3)]
 current_player = 'X'
 game_over = False
 winner = None
 
-# Draw grid
+
 def draw_grid():
     screen.fill(BACKGROUND_COLOR)
     pygame.draw.line(screen, GRID_COLOR, (200, 0), (200, SCREEN_HEIGHT), LINE_WIDTH)
@@ -35,7 +35,7 @@ def draw_grid():
     pygame.draw.line(screen, GRID_COLOR, (0, 200), (SCREEN_WIDTH, 200), LINE_WIDTH)
     pygame.draw.line(screen, GRID_COLOR, (0, 400), (SCREEN_WIDTH, 400), LINE_WIDTH)
 
-# Draw X and O
+
 def draw_marks():
     for row in range(3):
         for col in range(3):
@@ -47,7 +47,6 @@ def draw_marks():
                 text = FONT.render(mark, True, RED)
                 screen.blit(text, (col * 200 + 50, row * 200 + 30))
 
-# Check for win or draw
 def check_winner():
     global game_over, winner
     for row in range(3):
@@ -67,7 +66,7 @@ def check_winner():
     if all(board[row][col] != '' for row in range(3) for col in range(3)):
         game_over, winner = True, 'Draw'
 
-# Restart game
+
 def restart_game():
     global board, current_player, game_over, winner
     board = [['' for _ in range(3)] for _ in range(3)]
@@ -75,7 +74,7 @@ def restart_game():
     game_over = False
     winner = None
 
-# Main game loop
+
 clock = pygame.time.Clock()
 while True:
     for event in pygame.event.get():
